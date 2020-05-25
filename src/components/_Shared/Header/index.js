@@ -30,7 +30,7 @@ export default function Header() {
   ];
 
   return (
-    <View>
+    <View style={Styles.container}>
       <Text style={Styles.title}>
         {" " +
           jours[laDate.getDay()] +
@@ -45,10 +45,10 @@ export default function Header() {
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "black",
     marginTop: 20,
     marginBottom: 20,
+    // marginBottom: Platform.OS === "android" ? 25 : 20,
+    // marginTop: Platform.OS === "android" ? 25 : 20,
   },
   title: {
     fontSize: 25,

@@ -4,11 +4,13 @@ import { Image, View, Text, StyleSheet } from "react-native";
 const TasksTile = ({ title }) => {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.icon}
-        source={require("../../../assets/check_circle.png")}
-      />
-      <Text>{title} </Text>
+      <View style={styles.subContainer}>
+        <Image
+          style={styles.icon}
+          source={require("../../../assets/check_circle.png")}
+        />
+        <Text style={styles.title}> {title} </Text>
+      </View>
       <Image
         style={styles.icon}
         source={require("../../../assets/delete.png")}
@@ -25,8 +27,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 50,
+  },
+  subContainer: {
+    flexDirection: "row",
+    //justifyContent: "flex-start", utilisé par défaut donc pas besoin de le mettre
+    alignItems: "center",
+  },
+  title: {
+    marginLeft: 30,
   },
 });
 
