@@ -1,21 +1,34 @@
 import React from "react";
-import { Image, View, Text, StyleSheet } from "react-native";
+import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const TasksTile = ({ title }) => {
+const TasksTile = ({ id, completed, title, onChangeStatus, onDelete }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.subContainer}>
-        <Image
-          style={styles.icon}
-          source={require("../../../assets/check_circle.png")}
-        />
-        <Text style={styles.title}> {title} </Text>
+    <TouchableOpacity onPress={() => onChangeStatus(id)}>
+      <View style={styles.container}>
+        <View style={styles.subContainer}>
+          <Image
+            style={styles.icon}
+            source={
+              completed
+                ? require("../../../assets/check_circle.png")
+                : require("../../../assets/circle.png")
+            }
+          />
+          <Text
+            style={[styles.title, { color: completed ? "lightgrey" : "black" }]}
+          >
+            {" "}
+            {title}{" "}
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => onDelete(id)}>
+          <Image
+            style={styles.icon}
+            source={require("../../../assets/delete.png")}
+          />
+        </TouchableOpacity>
       </View>
-      <Image
-        style={styles.icon}
-        source={require("../../../assets/delete.png")}
-      />
-    </View>
+    </TouchableOpacity>
   );
 };
 

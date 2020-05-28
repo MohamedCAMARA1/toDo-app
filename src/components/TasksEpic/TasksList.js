@@ -2,14 +2,22 @@ import React from "react";
 import { FlatList, Text } from "react-native";
 import TasksTile from "./TasksTile";
 
-const TasksList = ({ tasks }) => {
-  const _renderItem = ({ item }) => <TasksTile title={item.title}></TasksTile>;
+const TasksList = ({ tasks, onChangeStatus, onDelete }) => {
+  const _renderItem = ({ item }) => (
+    <TasksTile
+      id={item.id}
+      title={item.title}
+      completed={item.completed}
+      onChangeStatus={onChangeStatus}
+      onDelete={onDelete}
+    ></TasksTile>
+  );
 
   return (
     <FlatList
       data={tasks}
       renderItem={_renderItem}
-      keyExtractor={(item) => item.title}
+      keyExtractor={(item) => item.id}
     />
   );
 };
