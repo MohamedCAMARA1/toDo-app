@@ -3,11 +3,14 @@ import { View, Text, StyleSheet } from "react-native";
 import TasksList from "./TasksList";
 import TaskForm from "./TaskForm";
 import CounterContainer from "./CounterContainer";
+import FloatingButton from "../_Shared/floatingButton";
 
 export default function TasksContainer(props) {
   const [tasks, setTasks] = useState([
     { id: new Date().getTime(), title: "nouvelle tâche ", completed: false },
   ]);
+
+  const [isFormOpened, setIsFormOpened] = useState(false);
 
   onAddTask = (title) => {
     const newTask = {
@@ -57,9 +60,13 @@ export default function TasksContainer(props) {
     return counter;
   };
 
+  const toggleForm = () => {
+    setIsFormOpened(!isFormOpened);
+  };
+
   return (
-    <View>
-      <TaskForm onAddTask={onAddTask} />
+    <View style={styles.container}>
+      {isFormOpened && <TaskForm onAddTask={onAddTask} />}
       <CounterContainer
         totalTasks={tasks.length}
         nbTasksCompleted={() => getTasksCompleted()}
@@ -69,10 +76,15 @@ export default function TasksContainer(props) {
         onChangeStatus={onChangeStatus}
         onDelete={onDelete}
       />
+
+      <FloatingButton toggleForm={toggleForm} isFormOpened={isFormOpened} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    position: "relative",
+  },
 });
