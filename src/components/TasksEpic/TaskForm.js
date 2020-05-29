@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Button } from "react-native";
+
 const TaskForm = ({ onAddTask }) => {
   const [title, setTitle] = useState("");
   const _onChangeText = (value) => {
